@@ -1,0 +1,2 @@
+<?php echo $this->translate->_('BIKES_DELETE_CONFIRM'); ?> '<?php echo $this->bike['strBikeName']; ?>'<br />
+<a href="<?php echo $this->url(array('controller' => 'bikes', 'action' => 'delete', 'id' => $this->bike['idBike'], 'b' => '1'), null, true); ?>"><?php echo $this->translate->_('MOTOGP_YES'); ?></a> - <a href="<?php echo $this->url(array('controller' => 'bikes', 'action' => 'list'), null, true); ?>"><?php echo $this->translate->_('MOTOGP_NO'); ?></a>

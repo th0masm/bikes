@@ -1,0 +1,39 @@
+<?php if ($this->msg) : ?>
+<div><?php echo $this->msg; ?></div>
+<?php else :  ?>
+<a href="<?php echo $this->url(array('controller' => 'riders', 'action' => 'add'), null, true); ?>"><?php echo $this->translate->_('RIDERS_ADD_NEW'); ?></a>
+<?php if (count($this->riders) > 0) :?>
+<table>
+	<tr><td colspan="4"><?php echo $this->translate->_('RIDERS_TITLE'); ?></td></tr>
+<?php
+foreach($this->riders AS $rider){
+	$img = ($rider['strRiderImage'] == NULL) ? $this->urlRiderImages . 'sin_imagen.jpg' : $this->urlRiderImages . $rider['strRiderImage'];
+?>
+<tr>
+	<td>
+		<img src="<?php echo  $img; ?>" alt="<?php echo $rider['strRiderName']; ?>" title="<?php echo $rider['strRiderName']; ?>" />
+	</td>
+	<td>
+		<?php echo $rider['strRiderName']; ?>
+	</td>
+	<td>
+		<?php echo $rider['strCategoryName']; ?>
+	</td>
+	<td>
+		<a href="<?php echo $this->url(array('controller'=>'riders','action'=>'edit','id'=>$rider['idRider']), null, true);?>"><?php echo $this->translate->_('MOTOGP_EDIT'); ?></a>
+		<a href="<?php echo $this->url(array('controller'=>'riders','action'=>'delete','id'=>$rider['idRider']), null, true);?>"><?php echo $this->translate->_('MOTOGP_DELETE'); ?></a>
+	</td>
+</tr>
+<?php
+}
+?>
+</table>
+<?php else :
+?>
+<div><?php echo $this->translate->_('RIDERS_EMPTY'); ?></div>
+<?php 
+endif; 
+endif;
+?>
+
+<a href="<?php echo $this->url(array('controller' => 'riders', 'action' => 'index'), null, true); ?>"><?php echo $this->translate->_('MOTOGP_BACK'); ?></a>

@@ -1,0 +1,10 @@
+<?php
+	echo $this->render('header.phtml');
+	if (Zend_Controller_Front::getInstance()->getRequest()->getControllerName() != 'index') :
+	?>
+	<div><a href="<?php echo $this->Baseurl(); ?>">Inicio</a></div>
+	<?php
+	endif;
+	echo $this->layout()->content;
+	echo $this->render('footer.phtml');
+?>

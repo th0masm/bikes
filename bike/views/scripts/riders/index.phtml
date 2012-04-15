@@ -1,0 +1,15 @@
+<a href="<?php echo $this->url(array('controller' => 'riders', 'action' => 'add'), null, true); ?>"><?php echo $this->translate->_('RIDERS_ADD_NEW'); ?></a><br /><br />
+<form action="<?php echo $this->url(array('controller' => 'riders', 'action' => 'list')); ?>" method="post" name="frmSelectCategory" id="frmSelectCategory">
+<label for=""><?php echo $this->translate->_('RIDERS_FORM_SELECT_CATEGORY'); ?></label>
+	<select name="intRiderCategory" id="intRiderCategory">
+		<option value="0" label="<?php echo $this->translate->_('RIDERS_FORM_SELECT_CATEGORY_TEXT'); ?>" selected="selected"><?php echo $this->translate->_('RIDERS_FORM_SELECT_CATEGORY_TEXT'); ?></option>
+<?php
+foreach ($this->categories AS $llave => $category) {
+	?>
+	<option value="<?php echo $llave; ?>" label="<?php echo $category; ?>"><?php echo $category; ?></option>
+	<?php
+}
+?>
+	</select>
+	<input type="submit" name="submit" id="submitbutton" value="<?php echo $this->translate->_('RIDERS_LIST'); ?>">
+</form>

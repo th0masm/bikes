@@ -1,0 +1,6 @@
+<form accept-charset="<?php echo $this->form->getAttrib('accept-charset'); ?>" id="<?php echo $this->form->getId();  ?>" name="<?php echo $this->form->getName(); ?>" enctype="<?php echo $this->form->getEnctype(); ?>" action="" method="<?php echo $this->form->getMethod(); ?>">
+	<?php echo $this->form->idTeam; ?>
+	<label for="strTeamName" class="required"><?php echo $this->translate->_($this->form->strTeamName->getLabel()); ?></label><?php echo $this->form->strTeamName; ?><br />
+	<?php echo $this->form->intTeamCategory; ?>
+	<?php echo $this->form->submit; ?>
+</form>

@@ -1,0 +1,31 @@
+<?php if ($this->msg) : ?>
+<div><?php echo $this->msg; ?></div>
+<?php endif; ?>
+<a href="<?php echo $this->url(array('controller' => 'teams', 'action' => 'add'), null, true); ?>"><?php echo $this->translate->_('TEAMS_ADD_NEW'); ?></a>
+<?php if (count($this->teams) > 0) :?>
+<table>
+	<tr><td colspan="3"><?php echo $this->translate->_('TEAMS_TITLE'); ?></td></tr>
+<?php
+foreach($this->teams AS $team){
+?>
+<tr>
+	<td>
+		<?php echo $team['strTeamName']; ?>
+	</td>
+	<td>
+		<?php echo $team['strCategoryName']; ?>
+	</td>
+	<td>
+		<a href="<?php echo $this->url(array('controller'=>'teams','action'=>'edit','id'=>$team['idTeam']), null, true);?>"><?php echo $this->translate->_('MOTOGP_EDIT'); ?></a>
+		<a href="<?php echo $this->url(array('controller'=>'teams','action'=>'delete','id'=>$team['idTeam']), null, true);?>"><?php echo $this->translate->_('MOTOGP_DELETE'); ?></a>
+	</td>
+</tr>
+<?php
+}
+?>
+</table>
+<?php else :
+?>
+<div><?php echo $this->translate->_('TEAMS_ADD_NEW'); ?></div>
+<?php 
+endif; ?>

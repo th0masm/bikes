@@ -1,0 +1,9 @@
+<?php if(is_array($this->msg)) : ?>
+<?php foreach ($this->msg AS $msg) :?>
+<div><?php echo $msg; ?></div>
+<?php endforeach;?>
+<?php else: ?>
+<div><?php echo $this->msg; ?></div>
+<?php endif; ?>
+
+<a href="<?php echo $this->url(array('controller' => 'riders', 'action' => 'index'), null, true); ?>"><?php echo $this->translate->_('MOTOGP_BACK'); ?></a>

@@ -1,0 +1,2 @@
+<?php echo $this->translate->_('CATEGORIES_DELETE_CONFIRM'); ?> '<?php echo $this->categoria['strCategoryName']; ?>'<br />
+<a href="<?php echo $this->url(array('controller' => 'categories', 'action' => 'delete', 'id' => $this->categoria['idCategory'], 'b' => '1'), null, true); ?>"><?php echo $this->translate->_('MOTOGP_YES'); ?></a> - <a href="<?php echo $this->url(array('controller' => 'categories', 'action' => 'list'), null, true); ?>"><?php echo $this->translate->_('MOTOGP_NO'); ?></a>
