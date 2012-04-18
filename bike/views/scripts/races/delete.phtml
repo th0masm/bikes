@@ -1,4 +1,2 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Races</b> and script/action name <b>delete</b></p>
-</div>
+<?php echo $this->translate->_('RACES_DELETE_CONFIRM'); ?> '<?php echo $this->race['strRaceName']; ?>'<br />
+<a href="<?php echo $this->url(array('controller' => 'races', 'action' => 'delete', 'id' => $this->race['idRace'], 'b' => '1'), null, true); ?>"><?php echo $this->translate->_('MOTOGP_YES'); ?></a> - <a href="<?php echo $this->url(array('controller' => 'races', 'action' => ''), null, true); ?>"><?php echo $this->translate->_('MOTOGP_NO'); ?></a>

@@ -41,4 +41,7 @@ jQuery(function($){
  * Cambiar #datepicker por el id del campo del formulario en el que queremos mostrar el datepicker.
  * $(document).ready(function() { $("#datepicker").datepicker(); });
  */
-	$(document).ready(function() { $("#dtRiderBirth").datepicker(); });
+	$(document).ready(function() {
+		$("#dtRiderBirth").datepicker();
+		$("#dtRaceDate").datepicker();
+	});

@@ -159,9 +159,7 @@ class Application_Model_DbTable_Riders extends Zend_Db_Table_Abstract
 	/**
 	 *
 	 * Actualiza un corredor
-	 * @param Int $id
-	 * @param String $teamName
-	 * @param String $teamCategory
+	 * @param Array $rider
 	 */
 	public function updateRider($rider){
 		$rider = $this->filterRider($rider);
@@ -185,8 +183,8 @@ class Application_Model_DbTable_Riders extends Zend_Db_Table_Abstract
 	 */
 	private function existsRider($rider, $add = null){
 		$row = $this->fetchRow($this->select()->where('strRiderName = ?', $rider['strRiderName']));
+		
 		// Si estamos añadiendo solo comprobamos el nombre si es igual, no comprobamos el id
-
 		if ($add){
 			return ($row->strRiderName == $rider['strRiderName']) ? true : false;
 		} else{

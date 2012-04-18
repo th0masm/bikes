@@ -1,4 +1,2 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Races</b> and script/action name <b>edit</b></p>
-</div>
+<?php echo $this->render('races/form.phtml'); ?>
+<a href="<?php echo $this->url(array('controller' => 'races', 'action' => ''), null, true); ?>"><?php echo $this->translate->_('MOTOGP_BACK'); ?></a>

@@ -1,4 +1,32 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Races</b> and script/action name <b>list</b></p>
-</div>
+<?php if ($this->msg) : ?>
+<div><?php echo $this->msg; ?></div>
+<?php endif; ?>
+<a href="<?php echo $this->url(array('controller' => 'races', 'action' => 'add'), null, true); ?>"><?php echo $this->translate->_('RACES_ADD_NEW'); ?></a>
+<?php if (count($this->races) > 0) :?>
+<table>
+	<th><td colspan="3"><?php echo $this->translate->_('RACES_TITLE'); ?></td></th>
+<?php
+foreach($this->races AS $race){
+?>
+<tr>
+	<td>
+		<?php echo $race['strRaceName']; ?>
+	</td>
+	<td>
+		<?php echo $race['strCategoryName']; ?>
+	</td>
+	<td><a href="<?php echo $this->url(array('controller'=>'races','action'=>'edit','id'=>$race['idRace']), null, true);?>"><?php echo $this->translate->_('MOTOGP_EDIT'); ?></a></td>
+	<td><a href="<?php echo $this->url(array('controller'=>'races','action'=>'delete','id'=>$race['idRace']), null, true);?>"><?php echo $this->translate->_('MOTOGP_DELETE'); ?></a></td>
+</tr>
+<?php
+}
+?>
+</table>
+<?php
+	else :
+?>
+	<div><?php echo $this->translate->_('RACES_EMPTY'); ?></div>
+<?php
+	endif;
+?>
+<a href="<?php echo $this->url(array('controller' => 'races', 'action' => 'index')); ?>"><?php echo $this->translate->_('MOTOGP_BACK'); ?></a>

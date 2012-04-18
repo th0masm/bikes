@@ -1,4 +1,14 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Races</b> and script/action name <b>index</b></p>
-</div>
+<a href="<?php echo $this->url(array('controller' => 'races', 'action' => 'add'), null, true); ?>"><?php echo $this->translate->_('RACES_ADD_NEW'); ?></a><br /><br />
+<form action="<?php echo $this->url(array('controller' => 'races', 'action' => 'list')); ?>" method="post" name="frmSelectCategory" id="frmSelectCategory">
+<label for=""><?php echo $this->translate->_('RACES_FORM_SELECT_CATEGORY'); ?></label>
+	<select onchange="this.form.submit()" name="intRaceCategory" id="intRaceCategory">
+		<option value="0" label="<?php echo $this->translate->_('RACES_FORM_SELECT_CATEGORY_TEXT'); ?>" selected="selected"><?php echo $this->translate->_('RACES_FORM_SELECT_CATEGORY_TEXT'); ?></option>
+<?php
+foreach ($this->categories AS $llave => $category) {
+	?>
+	<option value="<?php echo $llave; ?>" label="<?php echo $category; ?>"><?php echo $category; ?></option>
+	<?php
+}
+?>
+	</select>
+</form>
