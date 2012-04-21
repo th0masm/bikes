@@ -1,3 +1,5 @@
-#Wed Mar 28 19:07:28 CEST 2012
 eclipse.preferences.version=1
 include_path=0;/Bikes\u00055;org.eclipse.dltk.USER_LIBRARY/ZendFramework1.11.11
+org.eclipse.php.core.taskCaseSensitive=enabled
+org.eclipse.php.core.taskPriorities=NORMAL,HIGH,NORMAL,NORMAL
+org.eclipse.php.core.taskTags=TODO,FIXME,XXX,@todo

@@ -123,7 +123,7 @@ DROP TABLE IF EXISTS `dbBikes`.`tblRaces` ;
 CREATE  TABLE IF NOT EXISTS `dbBikes`.`tblRaces` (
   `idRace` BIGINT NOT NULL AUTO_INCREMENT ,
   `strRaceName` VARCHAR(100) NOT NULL ,
-  `dtRaceDate` DATE NOT NULL ,
+  `dtRaceDate` DATE NULL ,
   `intRaceCategory` BIGINT NULL ,
   `intRaceCountry` BIGINT NULL ,
   PRIMARY KEY (`idRace`) ,
@@ -149,19 +149,20 @@ DROP TABLE IF EXISTS `dbBikes`.`tblResults` ;
 
 CREATE  TABLE IF NOT EXISTS `dbBikes`.`tblResults` (
   `idResult` BIGINT NOT NULL AUTO_INCREMENT ,
-  `intRider` BIGINT NULL ,
-  `intRace` BIGINT NULL ,
-  `intPosition` INT NOT NULL ,
+  `intResultRider` BIGINT NOT NULL ,
+  `intResultRace` BIGINT NOT NULL ,
+  `intResultPosition` INT NULL ,
+  `intResultPoints` INT NULL ,
   PRIMARY KEY (`idResult`) ,
-  INDEX `fkResultRider` (`intRider` ASC) ,
-  INDEX `fkResultRace` (`intRace` ASC) ,
+  INDEX `fkResultRider` (`intResultRider` ASC) ,
+  INDEX `fkResultRace` (`intResultRace` ASC) ,
   CONSTRAINT `fkResultRider`
-    FOREIGN KEY (`intRider` )
+    FOREIGN KEY (`intResultRider` )
     REFERENCES `dbBikes`.`tblRiders` (`idRider` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fkResultRace`
-    FOREIGN KEY (`intRace` )
+    FOREIGN KEY (`intResultRace` )
     REFERENCES `dbBikes`.`tblRaces` (`idRace` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -177,8 +178,8 @@ CREATE  TABLE IF NOT EXISTS `dbBikes`.`tblUsers` (
   `idUser` INT NOT NULL AUTO_INCREMENT ,
   `strUserName` VARCHAR(12) NOT NULL ,
   `strUserPassword` VARCHAR(40) NOT NULL ,
-  `strUserEmail` VARCHAR(100) NOT NULL ,
-  `intUserActive` TINYINT(1) NOT NULL DEFAULT 1 ,
+  `strUserEmail` VARCHAR(100) NULL ,
+  `intUserActive` TINYINT(1) NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`idUser`) )
 ENGINE = InnoDB;
 
@@ -187,6 +188,8 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
 -- -----------------------------------------------------
 -- Data for table `dbBikes`.`tblCountries`
 -- -----------------------------------------------------

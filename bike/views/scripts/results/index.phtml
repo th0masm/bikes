@@ -1,4 +1,34 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Results</b> and script/action name <b>index</b></p>
-</div>
+<!--
+
+Algunos enlaces con informacion sobre ajax y zend framework
+	http://www.forosdelweb.com/f68/tutorial-zend-framework-ajax-jquery-web-tools-713762/
+	http://angelorum.blogspot.com.es/2010/10/zend-framework-10-trabajando-con-ajax.html
+
+	
+Como añadir campos dinamicamente
+	http://www.masquewordpress.com/anadir-campos-a-un-formulario-dinamicamente-con-jquery/
+	http://mbarrerar.wordpress.com/2010/09/14/agregar-input-dinamicamente-con-jquery/
+	
+ -->
+
+
+<table>
+	<tr>
+		<td><?php echo $this->translate->_('RESULTS_TABLE_RACE'); ?></td>
+		<td><?php echo $this->translate->_('RESULTS_TABLE_CATEGORY'); ?></td>
+		<td><?php echo $this->translate->_('RESULTS_ADD'); ?></td>
+		<td><?php echo $this->translate->_('RESULTS_EDIT'); ?></td>
+	</tr>
+<?php
+foreach ($this->races AS $race) :
+?>
+	<tr>
+		<td><?php echo $race['strRaceName']; ?></td>
+		<td><?php echo $race['strCategoryName']; ?></td>
+		<td><a href="<?php echo $this->url(array('controller' => 'results', 'action' => 'add', 'race' => $race['idRace'])); ?>"><?php echo $this->translate->_('RESULTS_ADD'); ?></a></td>
+		<td><a href="<?php echo $this->url(array('controller' => 'results', 'action' => 'edit', 'race' => $race['idRace'])); ?>"><?php echo $this->translate->_('RESULTS_EDIT'); ?></a></td>
+	</tr>
+<?php
+endforeach;
+?>
+</table>

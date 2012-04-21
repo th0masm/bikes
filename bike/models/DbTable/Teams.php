@@ -98,7 +98,12 @@ class Application_Model_DbTable_Teams extends Zend_Db_Table_Abstract
 	* @return array
 	*/
 	public function getAllTeamsForForm(){
-		$rows = $this->fetchAll()->toArray();
+		$rows = $this->select()
+								->from($this->_name)
+								->order(array('strTeamName'))
+								->query()
+								->fetchAll();
+		
 		foreach($rows AS $row)
 			$res[$row['idTeam']] = $row['strTeamName'];
 		return $res;

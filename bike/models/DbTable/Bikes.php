@@ -79,14 +79,24 @@ class Application_Model_DbTable_Bikes extends Zend_Db_Table_Abstract
 	 * Devuelve todos los registros de las motos haciendo un join de las categorias.
 	 * @return Objeto fetchAll
 	 */
-	public function getAllBikes(){
+	public function getAllBikes($category = NULL){
+		if (!is_null($category)) {
+			return $this->select()
+									->from($this->_name)
+									->where('intBikeCategory = ?', $category)
+									->setIntegrityCheck(false)
+									->join('tblCategories', $this->_name.'.intBikeCategory = tblCategories.idCategory')
+									->order($this->_name . '.strBikeName ASC')
+									->query()
+									->fetchAll();
+		}
 		return $this->select()
-												->from($this->_name)
-												->setIntegrityCheck(false)
-												->join('tblCategories', $this->_name.'.intBikeCategory = tblCategories.idCategory')
-												->order($this->_name . '.strBikeName ASC')
-												->query()
-												->fetchAll();
+								->from($this->_name)
+								->setIntegrityCheck(false)
+								->join('tblCategories', $this->_name.'.intBikeCategory = tblCategories.idCategory')
+								->order('tblCategories.strCategoryName ASC', $this->_name . '.strBikeName ASC')
+								->query()
+								->fetchAll();
 	}
 	
 	
@@ -95,8 +105,14 @@ class Application_Model_DbTable_Bikes extends Zend_Db_Table_Abstract
 	 * Devuelve todas las motos para mostrarlas en los select de los formularios.
 	 * @return array
 	 */
-	public function getAllBikesForForm(){
-		$rows = $this->fetchAll()->toArray();
+	public function getAllBikesForForm($category = 1){
+		$rows = $this->select()
+								->from($this->_name)
+								->where('intBikeCategory = ?', $category)
+								->order($this->_name . '.strBikeName ASC')
+								->query()
+								->fetchAll();
+
 		foreach($rows AS $row)
 			$res[$row['idBike']] = $row['strBikeName'];
 		return $res;

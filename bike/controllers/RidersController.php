@@ -64,7 +64,16 @@ class RidersController extends Zend_Controller_Action
 	 */
 	private $_config;
 	
+	
+	
+	/**
+	 * Guarda el namespace de la session
+	 * @var Zend_Session
+	 */
+	private $_sesion;
 
+	
+	
 	/**
 	 *
 	 * Inicializamos algunas variables
@@ -77,6 +86,7 @@ class RidersController extends Zend_Controller_Action
 		$this->_table = new Application_Model_DbTable_Riders;
 		$this->_config = $this->getInvokeArg('bootstrap')->getOptions();
 		$this->_imageDir = $this->_config['motogp']['dirRiderImages'];
+		$this->_sesion = new Zend_Session_Namespace('motogp');
 	}
 
 
@@ -104,6 +114,7 @@ class RidersController extends Zend_Controller_Action
 			if ($form['intRiderCategory'] > 0) {
 				$this->view->urlRiderImages = $this->_config['motogp']['urlRiderImages'];
 				$this->view->riders = $this->_table->getAllRiders($form['intRiderCategory']);
+				$this->_sesion->intRiderCategory = $form['intRiderCategory'];
 			}else{
 				$this->view->msg = $this->view->translate->_('RIDERS_CATEGORY_NOT_FOUND'); 
 			}
@@ -118,7 +129,7 @@ class RidersController extends Zend_Controller_Action
 	{
 		$this->view->titulo = $this->_titulo . $this->view->translate->_($this->_cname . $this->_action);
 
-		$form = new Form_Riders();
+		$form = new Form_Riders(array('intRiderCategory' => $this->_sesion->intRiderCategory));
 		$form->submit->setLabel($this->view->translate->_($this->_cname . $this->_action . '_SAVE'));
 
 		if ($this->getRequest()->isPost()) {

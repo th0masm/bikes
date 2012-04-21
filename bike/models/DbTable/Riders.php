@@ -90,7 +90,7 @@ class Application_Model_DbTable_Riders extends Zend_Db_Table_Abstract
 								->join('tblCategories', $this->_name . '.intRiderCategory = tblCategories.idCategory')
 								->join('tblTeams', $this->_name . '.intRiderTeam = tblTeams.idTeam')
 								->join('tblBikes', $this->_name . '.intRiderBike = tblBikes.idBike')
-								->order(array('tblCategories.strCategoryName', 'strTeamName'))
+								->order(array('intRiderNumber'))
 								->query()
 								->fetchAll();
 	}

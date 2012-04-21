@@ -84,7 +84,7 @@ class Form_Riders extends Zend_Form{
 		// moto del piloto
 		$bikes = new Application_Model_DbTable_Bikes();
 		$riderBike = new Zend_Form_Element_Select('intRiderBike');		
-		$riderBike->addMultiOptions($bikes->getAllBikesForForm())
+		$riderBike->addMultiOptions($bikes->getAllBikesForForm($options['intRiderCategory']))
 							->addValidator('NotEmpty')
 							->setLabel('RIDERS_FORM_BIKE');
 				

@@ -75,6 +75,40 @@ class Application_Model_DbTable_Races extends Zend_Db_Table_Abstract
 	}
 	
 	
+	
+	
+	/**
+	 * Devuelve un select con todas las carreras junto con sus categorias para mostrarlas en el index de los resultados.
+	 */
+	public function getAllRacesForResults(){
+		/*
+		echo $this->select()
+								->from($this->_name, array('idRace',
+																					'strRaceName',
+																					'dtRaceDate' => 'date_format(tblRaces.dtRaceDate,\'%d/%m/%Y\')'))
+								->setIntegrityCheck(false)
+								->join('tblCategories', $this->_name . '.intRaceCategory = tblCategories.idCategory')
+								->join('tblCountries', $this->_name . '.intRaceCountry = tblCountries.idCountry')
+								->order(array('tblCategories.strCategoryName', 'tblRaces.strRaceName'))
+								->__toString();
+		exit;
+		*/
+		
+		
+		return $this->select()
+								->from($this->_name, array('idRace',
+																					'strRaceName',
+																					'dtRaceDate' => 'date_format(tblRaces.dtRaceDate,\'%d/%m/%Y\')'))
+								->setIntegrityCheck(false)
+								->join('tblCategories', $this->_name . '.intRaceCategory = tblCategories.idCategory')
+								->join('tblCountries', $this->_name . '.intRaceCountry = tblCountries.idCountry')
+								->order(array('tblCategories.strCategoryName', 'tblRaces.strRaceName'))
+								->query()
+								->fetchAll();
+	}
+	
+	
+	
 	/**
 	 *
 	 * Devuelve todos los registros de las carreras haciendo un join de las categorias.

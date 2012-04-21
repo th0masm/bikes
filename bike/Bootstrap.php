@@ -3,6 +3,17 @@
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 
+	/**
+	 * Inicializamos las sessiones
+	 */
+	protected function _initSession(){
+		Zend_Session::start();
+	}
+	
+	
+	/**
+	 * Hacemos la autocarga de librerias.
+	 */
 	protected function _initAutoload()
 	{
 		$moduleLoader = new Zend_Application_Module_Autoloader(array(
@@ -69,7 +80,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		/**
 		 * Añadimos los estilos css
 		 */
-		
+
 		// Mis estilos
 		$view->headLink()->appendStylesheet('/resources/styles/reset.css');
 		$view->headLink()->appendStylesheet('/resources/styles/bikes.css');
